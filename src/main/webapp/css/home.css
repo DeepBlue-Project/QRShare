@@ -1,0 +1,5 @@
+img#qrcode_image {
+    width: auto;
+    height: auto;
+    display: block;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>QRShare - Home</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="QRCode generation for sharing text accross devices.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../../css/home.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="../../js/stomp.min.js"></script>
+    <script src="../../js/qrshare_websocket.js"></script>
+</head>
+<body>
+    <div>
+        <img id="qrcode_image" alt="Scan me!" th:src="${qrcode}">
+        <label>
+            <textarea id="token_text_area" th:text="${token}"></textarea>
+        </label>
+        <button onclick="copyTokenToClipboard()">copy</button>
+        <div id="main_shared_div">
+            <a id="shared_content" hidden=""></a>
+        </div>
+        <script th:inline="javascript">window.onload = () => initSocketConnection([[${token}]])</script>
+    </div>
+</body>
+</html>
